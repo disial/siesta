@@ -1,0 +1,119 @@
+SystemName      (Bi2S3) Rhombohedra structure
+#               Rhombohedra phase
+#               PBE-SOL functional
+#               Theoretical lattice constant obtained for the Hamann pseudos
+#               (taken from the pseudo-dojo web page)
+#               Mesh Cutoff: 600 Ry
+#               Monkhorst-Pack grid: 9 x 9 x 5 ; displaced 0.5 0.5 0.5
+SystemLabel	Bi2S3
+NumberOfSpecies 2
+NumberOfAtoms	5
+%block ChemicalSpeciesLabel
+  1  83  Bi
+  2  16  S
+%endblock ChemicalSpeciesLabel
+%block PS.lmax
+   Bi    3
+   S    3
+%endblock PS.lmax
+PAO.BasisType    split
+PAO.SplitNorm    0.25
+PAO.BasisSizes   DZP
+LatticeConstant 1.0 Ang
+%block LatticeVectors
+       -2.080912   -3.603466    0.000925
+        2.080912   -3.603466    0.000925
+        0.000000    2.399846    9.032352
+%endblock LatticeVectors
+AtomicCoordinatesFormat  Fractional
+%block  AtomicCoordinatesAndAtomicSpecies
+    0.40308084    0.40308084    0.70950924   1       1  Bi
+    0.59691916    0.59691916    0.29049077   1       2  Bi
+    0.79554917    0.79554917    0.88722756   2       3  S
+    0.00000000    0.00000000    0.50000001   2       4  S
+    0.20445083    0.20445083    0.11277242   2       5  S
+%endblock  AtomicCoordinatesAndAtomicSpecies
+WriteCoorStep           .true.        #  Write the atomic coordinates to
+                                      #     standard output at every
+                                      #     MD time step or relaxation step.
+%block kgrid_Monkhorst_Pack
+   9  0   0  0.5
+   0  9   0  0.5
+   0  0   5  0.5
+%endblock kgrid_Monkhorst_Pack
+%block PAO.Basis                 # Define Basis set
+Bi                    5                    # Species label, number of l-shells
+ n=5   0   1                         # n, l, Nzeta
+   2.077
+   1.000
+ n=6   0   2                         # n, l, Nzeta
+   4.184      3.258
+   1.000      1.000
+ n=5   1   1                         # n, l, Nzeta
+   2.414
+   1.000
+ n=6   1   2 P   1                   # n, l, Nzeta, Polarization, NzetaPol
+   5.937      4.398
+   1.000      1.000
+ n=5   2   1                         # n, l, Nzeta
+   3.258
+   1.000
+S                    2                    # Species label, number of l-shells
+ n=4   0   2                         # n, l, Nzeta
+   4.257      3.357
+   1.000      1.000
+ n=4   1   2 P   1                   # n, l, Nzeta, Polarization, NzetaPol
+   5.331      3.710
+   1.000      1.000
+%endblock PAO.Basis
+MeshCutoff             600 Ry      # Defines the plane wave cutoff for the grid
+DM.NumberPulay         3           # It controls the Pulay convergence
+                                   #   accelerator.
+DM.UseSaveDM           .true.      # Use the Density Matrix from the DM file
+                                   #   if found
+DM.Tolerance           1.d-4       # Tolerance in maximum difference
+                                   # between input and output DM
+MaxSCFIterations       700         # Maximum number of SCF Iterations
+ElectronicTemperature  0.075 eV    # Electronic Temperature for the smearing
+                                   #   of the Fermi-Dirac occupation function
+SCF.MixAfterConvergence .false.    # Logical variable to indicate whether mixing
+                                   #   is done in the last SCF cycle
+                                   #   (after convergence has been achieved)
+                                   #   or not.
+                                   #   Not mixing after convergence improves
+                                   #   the quality of the final Kohn-Sham
+                                   #   energy and of the forces when mixing
+                                   #   the DM.
+#
+# Molecular Dynamic or Relaxation variables
+#
+MD.TypeOfRun            cg          # Type of dynamics:
+                                    #   - CG
+                                    #   - Verlet
+                                    #   - Nose
+                                    #   - Parrinello-Rahman
+                                    #   - Nose-Parrinello-Rahman
+                                    #   - Anneal
+                                    #   - FC
+MD.VariableCell         .true.      # The lattice is relaxed together with
+                                    # the atomic coordinates?
+MD.NumCGsteps            100          # Number of CG steps for
+                                    #   coordinate optimization
+MD.MaxCGDispl           0.05 Bohr    # Maximum atomic displacement
+                                    #   in one CG step
+MD.MaxForceTol         0.01 eV/Ang  # Tolerance in the maximum
+                                    #   atomic force
+MD.MaxStressTol        0.0001 eV/Ang**3
+                                    # Tolerance in the maximum
+                                    #   stress in a MD.VariableCell CG optimi.
+MD.UseSaveXV           .true.      # Instructs Siesta to read the
+                                    #   atomic positions and velocities stored
+                                    #   in file SystemLabel.XV by a
+                                    #   previous run.
+MD.UseSaveCG           .true.      # Instructs to read the conjugate-gradient
+                                    #   hystory information stored in file
+WriteCoorStep           .true.        #  Write the atomic coordinates to
+COOP.Write  .true.
+WFS.Write.For.Bands    .true.
+WFS.Band.Min              1
+WFS.Band.Max             83

@@ -1,0 +1,500 @@
+Siesta Version  : v4.1-b4
+Architecture    : unknown
+Compiler version: GNU Fortran (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0
+Compiler flags  : gfortran -O2 -fPIC -ftree-vectorize
+PP flags        : -DFC_HAVE_ABORT -DSIESTA__DIAG_2STAGE -DSIESTA__MRRR
+Libraries       : libsiestaLAPACK.a libsiestaBLAS.a
+SERIAL version
+
+* Running in serial mode
+>> Start of run:  17-NOV-2023  12:52:06
+
+                           ***********************       
+                           *  WELCOME TO SIESTA  *       
+                           ***********************       
+
+reinit: Reading from standard input
+reinit: Dumped input in INPUT_TMP.98387
+************************** Dump of input data file ****************************
+SystemName      (Bi2S3) Rhombohedra structure
+#               Rhombohedra phase
+#               PBE-SOL functional
+#               Theoretical lattice constant obtained for the Hamann pseudos
+#               (taken from the pseudo-dojo web page)
+#               Mesh Cutoff: 600 Ry
+#               Monkhorst-Pack grid: 9 x 9 x 5 ; displaced 0.5 0.5 0.5
+SystemLabel	Bi2S3
+NumberOfSpecies 2
+NumberOfAtoms	5
+%block ChemicalSpeciesLabel
+  1  83  Bi
+  2  16  S
+%endblock ChemicalSpeciesLabel
+%block PS.lmax
+   Bi    3
+   S    3
+%endblock PS.lmax
+PAO.BasisType    split
+PAO.SplitNorm    0.25
+PAO.BasisSizes   DZP
+LatticeConstant 1.0 Ang
+%block LatticeVectors
+       -2.080912   -3.603466    0.000925
+        2.080912   -3.603466    0.000925
+        0.000000    2.399846    9.032352
+%endblock LatticeVectors
+AtomicCoordinatesFormat  Fractional
+%block  AtomicCoordinatesAndAtomicSpecies
+    0.40308084    0.40308084    0.70950924   1       1  Bi
+    0.59691916    0.59691916    0.29049077   1       2  Bi
+    0.79554917    0.79554917    0.88722756   2       3  S
+    0.00000000    0.00000000    0.50000001   2       4  S
+    0.20445083    0.20445083    0.11277242   2       5  S
+%endblock  AtomicCoordinatesAndAtomicSpecies
+WriteCoorStep           .true.        #  Write the atomic coordinates to
+                                      #     standard output at every
+                                      #     MD time step or relaxation step.
+%block kgrid_Monkhorst_Pack
+   9  0   0  0.5
+   0  9   0  0.5
+   0  0   5  0.5
+%endblock kgrid_Monkhorst_Pack
+%block PAO.Basis                 # Define Basis set
+Bi                    5                    # Species label, number of l-shells
+ n=5   0   1                         # n, l, Nzeta
+   2.077
+   1.000
+ n=6   0   2                         # n, l, Nzeta
+   4.184      3.258
+   1.000      1.000
+ n=5   1   1                         # n, l, Nzeta
+   2.414
+   1.000
+ n=6   1   2 P   1                   # n, l, Nzeta, Polarization, NzetaPol
+   5.937      4.398
+   1.000      1.000
+ n=5   2   1                         # n, l, Nzeta
+   3.258
+   1.000
+S                    2                    # Species label, number of l-shells
+ n=4   0   2                         # n, l, Nzeta
+   4.257      3.357
+   1.000      1.000
+ n=4   1   2 P   1                   # n, l, Nzeta, Polarization, NzetaPol
+   5.331      3.710
+   1.000      1.000
+%endblock PAO.Basis
+MeshCutoff             600 Ry      # Defines the plane wave cutoff for the grid
+DM.NumberPulay         3           # It controls the Pulay convergence
+                                   #   accelerator.
+DM.UseSaveDM           .true.      # Use the Density Matrix from the DM file
+                                   #   if found
+DM.Tolerance           1.d-4       # Tolerance in maximum difference
+                                   # between input and output DM
+MaxSCFIterations       700         # Maximum number of SCF Iterations
+ElectronicTemperature  0.075 eV    # Electronic Temperature for the smearing
+                                   #   of the Fermi-Dirac occupation function
+SCF.MixAfterConvergence .false.    # Logical variable to indicate whether mixing
+                                   #   is done in the last SCF cycle
+                                   #   (after convergence has been achieved)
+                                   #   or not.
+                                   #   Not mixing after convergence improves
+                                   #   the quality of the final Kohn-Sham
+                                   #   energy and of the forces when mixing
+                                   #   the DM.
+#
+# Molecular Dynamic or Relaxation variables
+#
+MD.TypeOfRun            cg          # Type of dynamics:
+                                    #   - CG
+                                    #   - Verlet
+                                    #   - Nose
+                                    #   - Parrinello-Rahman
+                                    #   - Nose-Parrinello-Rahman
+                                    #   - Anneal
+                                    #   - FC
+MD.VariableCell         .true.      # The lattice is relaxed together with
+                                    # the atomic coordinates?
+MD.NumCGsteps            100          # Number of CG steps for
+                                    #   coordinate optimization
+MD.MaxCGDispl           0.05 Bohr    # Maximum atomic displacement
+                                    #   in one CG step
+MD.MaxForceTol         0.01 eV/Ang  # Tolerance in the maximum
+                                    #   atomic force
+MD.MaxStressTol        0.0001 eV/Ang**3
+                                    # Tolerance in the maximum
+                                    #   stress in a MD.VariableCell CG optimi.
+MD.UseSaveXV           .true.      # Instructs Siesta to read the
+                                    #   atomic positions and velocities stored
+                                    #   in file SystemLabel.XV by a
+                                    #   previous run.
+MD.UseSaveCG           .true.      # Instructs to read the conjugate-gradient
+                                    #   hystory information stored in file
+WriteCoorStep           .true.        #  Write the atomic coordinates to
+COOP.Write  .true.
+WFS.Write.For.Bands    .true.
+WFS.Band.Min              1
+WFS.Band.Max             83
+************************** End of input data file *****************************
+
+reinit: -----------------------------------------------------------------------
+reinit: System Name: Bi2S3) Rhombohedra structure
+reinit: -----------------------------------------------------------------------
+reinit: System Label: Bi2S3
+reinit: -----------------------------------------------------------------------
+
+initatom: Reading input for the pseudopotentials and atomic orbitals ----------
+Species number:   1 Atomic number:   83 Label: Bi
+Species number:   2 Atomic number:   16 Label: S
+
+Ground state valence configuration:   6s02  6p03
+Reading pseudopotential information in formatted form from Bi.psf
+
+Valence configuration for pseudopotential generation:
+6s( 2.00) rc: 3.83
+6p( 3.00) rc: 2.77
+6d( 0.00) rc: 2.99
+5f( 0.00) rc: 2.99
+Ground state valence configuration:   3s02  3p04
+Reading pseudopotential information in formatted form from S.psf
+
+Valence configuration for pseudopotential generation:
+3s( 2.00) rc: 1.61
+3p( 4.00) rc: 1.76
+3d( 0.00) rc: 1.92
+4f( 0.00) rc: 1.92
+relmxkb: Read Max KB Ang. Momentum=    3 for species Bi
+relmxkb: Read Max KB Ang. Momentum=    3 for species S
+
+<basis_specs>
+===============================================================================
+Bi                   Z=  83    Mass=  208.98        Charge= 0.17977+309
+Lmxo=2 Lmxkb= 3    BasisType=split      Semic=F
+L=0  Nsemic=1  Cnfigmx=6
+          n=1  nzeta=1  polorb=0
+            splnorm:   0.25000    
+               vcte:    0.0000    
+               rinn:    0.0000    
+               qcoe:    0.0000    
+               qyuk:    0.0000    
+               qwid:   0.10000E-01
+                rcs:    2.0770    
+            lambdas:    1.0000    
+          n=2  nzeta=2  polorb=0
+            splnorm:   0.25000    
+               vcte:    0.0000    
+               rinn:    0.0000    
+               qcoe:    0.0000    
+               qyuk:    0.0000    
+               qwid:   0.10000E-01
+                rcs:    4.1840      3.2580    
+            lambdas:    1.0000      1.0000    
+L=1  Nsemic=1  Cnfigmx=6
+          n=1  nzeta=1  polorb=0
+            splnorm:   0.25000    
+               vcte:    0.0000    
+               rinn:    0.0000    
+               qcoe:    0.0000    
+               qyuk:    0.0000    
+               qwid:   0.10000E-01
+                rcs:    2.4140    
+            lambdas:    1.0000    
+          n=2  nzeta=2  polorb=1
+            splnorm:   0.25000    
+               vcte:    0.0000    
+               rinn:    0.0000    
+               qcoe:    0.0000    
+               qyuk:    0.0000    
+               qwid:   0.10000E-01
+                rcs:    5.9370      4.3980    
+            lambdas:    1.0000      1.0000    
+L=2  Nsemic=0  Cnfigmx=5
+          n=1  nzeta=1  polorb=0
+            splnorm:   0.25000    
+               vcte:    0.0000    
+               rinn:    0.0000    
+               qcoe:    0.0000    
+               qyuk:    0.0000    
+               qwid:   0.10000E-01
+                rcs:    3.2580    
+            lambdas:    1.0000    
+-------------------------------------------------------------------------------
+L=0  Nkbl=2  erefs: 0.17977+309 0.17977+309
+L=1  Nkbl=2  erefs: 0.17977+309 0.17977+309
+L=2  Nkbl=1  erefs: 0.17977+309
+L=3  Nkbl=1  erefs: 0.17977+309
+===============================================================================
+</basis_specs>
+
+atom: Called for Bi                    (Z =  83)
+
+read_vps: Pseudopotential generation method:
+read_vps: ATM3      Troullier-Martins                       
+Total valence charge:    5.00000
+
+read_vps: Pseudopotential includes a core correction:
+read_vps: Pseudo-core for xc-correction
+
+xc_check: Exchange-correlation functional:
+xc_check: Ceperley-Alder
+xc_check: WARNING: Pseudopotential generated with GGA PBE functional
+V l=0 = -2*Zval/r beyond r=  3.9300
+V l=1 = -2*Zval/r beyond r=  3.7384
+V l=2 = -2*Zval/r beyond r=  3.7384
+V l=3 = -2*Zval/r beyond r=  3.7384
+All V_l potentials equal beyond r=  3.7854
+This should be close to max(r_c) in ps generation
+All pots = -2*Zval/r beyond r=  3.9300
+
+VLOCAL1: 99.0% of the norm of Vloc inside      3.029 Ry
+VLOCAL1: 99.9% of the norm of Vloc inside      6.904 Ry
+atom: Maximum radius for 4*pi*r*r*local-pseudopot. charge    4.50935
+atom: Maximum radius for r*vlocal+2*Zval:    3.97948
+KBgen: More than one KB projector for l=  0
+KBgen: ghost states analysis will be not performed
+KBgen: More than one KB projector for l=  1
+KBgen: ghost states analysis will be not performed
+GHOST: No ghost state for L =  2
+GHOST: No ghost state for L =  3
+
+KBgen: Kleinman-Bylander projectors: 
+   l= 0   rc=  4.080225   el= -0.853683   Ekb=  3.082177   kbcos=  0.421088
+   l= 0   rc=  4.398012   el= -0.044263   Ekb= -0.666581   kbcos= -0.197731
+   l= 1   rc=  4.131548   el= -0.366388   Ekb=  4.142066   kbcos=  0.161160
+   l= 1   rc=  4.343379   el=  0.001401   Ekb= -1.261632   kbcos= -0.062185
+   l= 2   rc=  4.289424   el=  0.002335   Ekb=  0.663886   kbcos=  0.191698
+   l= 3   rc=  4.289424   el=  0.003434   Ekb= -1.931630   kbcos= -0.052889
+
+KBgen: Total number of  Kleinman-Bylander projectors:   20
+atom: -------------------------------------------------------------------------
+
+atom: SANKEY-TYPE ORBITALS:
+atom: Selected multiple-zeta basis: split     
+
+SPLIT: Orbitals with angular momentum L= 0
+
+SPLIT: Basis orbitals for state 5s
+
+   izeta = 1
+                 lambda =    1.000000
+                     rc =    2.077458
+                 energy =    1.135617
+                kinetic =    2.288777
+    potential(screened) =   -1.153160
+       potential(ionic) =   -2.719883
+
+SPLIT: Basis orbitals for state 6s
+
+   izeta = 1
+                 lambda =    1.000000
+                     rc =    4.183517
+                 energy =    1.189823
+                kinetic =    2.265770
+    potential(screened) =   -1.075946
+       potential(ionic) =   -3.066787
+
+   izeta = 2
+                 rmatch =    3.258120
+              splitnorm =    1.244562
+                 energy =    2.914063
+                kinetic =    4.338209
+    potential(screened) =   -1.424147
+       potential(ionic) =   -3.826640
+
+SPLIT: Orbitals with angular momentum L= 1
+
+SPLIT: Basis orbitals for state 5p
+
+   izeta = 1
+                 lambda =    1.000000
+                     rc =    2.413667
+                 energy =    2.459903
+                kinetic =    3.543358
+    potential(screened) =   -1.083454
+       potential(ionic) =   -3.423244
+
+SPLIT: Basis orbitals for state 6p
+
+   izeta = 1
+                 lambda =    1.000000
+                     rc =    5.936706
+                 energy =    0.879596
+                kinetic =    1.594980
+    potential(screened) =   -0.715384
+       potential(ionic) =   -2.853725
+
+   izeta = 2
+                 rmatch =    4.398012
+              splitnorm =    1.000604
+                 energy =    2.109773
+                kinetic =    3.220597
+    potential(screened) =   -1.110824
+       potential(ionic) =   -3.610300
+
+SPLIT: Orbitals with angular momentum L= 2
+
+SPLIT: Basis orbitals for state 5d
+
+   izeta = 1
+                 lambda =    1.000000
+                     rc =    3.258120
+                 energy =    1.754569
+                kinetic =    3.317082
+    potential(screened) =   -1.562514
+       potential(ionic) =   -4.128899
+
+POLgen: Perturbative polarization orbital with L=  2
+
+POLgen: Polarization orbital for state 6p
+
+   izeta = 1
+                     rc =    5.936706
+                 energy =    1.455512
+                kinetic =    2.463719
+    potential(screened) =   -1.008207
+       potential(ionic) =   -3.333878
+atom: Total number of Sankey-type orbitals: 22
+
+atm_pop: Valence configuration (for local Pseudopot. screening):
+ 5s( 0.00) 6s( 2.00)                                                  
+ 5p( 0.00) 6p( 3.00)                                                  
+ 5d( 0.00) 0d( 0.00)                                                  
+Vna: chval, zval:    5.00000   5.00000
+
+Vna:  Cut-off radius for the neutral-atom potential:   5.936706
+comcore: Pseudo-core radius Rcore=  4.983604
+
+atom: _________________________________________________________________________
+
+<basis_specs>
+===============================================================================
+S                    Z=  16    Mass=  32.070        Charge= 0.17977+309
+Lmxo=1 Lmxkb= 3    BasisType=split      Semic=F
+L=0  Nsemic=0  Cnfigmx=4
+          n=1  nzeta=2  polorb=0
+            splnorm:   0.25000    
+               vcte:    0.0000    
+               rinn:    0.0000    
+               qcoe:    0.0000    
+               qyuk:    0.0000    
+               qwid:   0.10000E-01
+                rcs:    4.2570      3.3570    
+            lambdas:    1.0000      1.0000    
+L=1  Nsemic=0  Cnfigmx=4
+          n=1  nzeta=2  polorb=1
+            splnorm:   0.25000    
+               vcte:    0.0000    
+               rinn:    0.0000    
+               qcoe:    0.0000    
+               qyuk:    0.0000    
+               qwid:   0.10000E-01
+                rcs:    5.3310      3.7100    
+            lambdas:    1.0000      1.0000    
+-------------------------------------------------------------------------------
+L=0  Nkbl=1  erefs: 0.17977+309
+L=1  Nkbl=1  erefs: 0.17977+309
+L=2  Nkbl=1  erefs: 0.17977+309
+L=3  Nkbl=1  erefs: 0.17977+309
+===============================================================================
+</basis_specs>
+
+atom: Called for S                     (Z =  16)
+
+read_vps: Pseudopotential generation method:
+read_vps: ATM3      Troullier-Martins                       
+Total valence charge:    6.00000
+
+read_vps: Pseudopotential includes a core correction:
+read_vps: Pseudo-core for xc-correction
+
+xc_check: Exchange-correlation functional:
+xc_check: Ceperley-Alder
+xc_check: WARNING: Pseudopotential generated with GGA PBE functional
+V l=0 = -2*Zval/r beyond r=  1.7157
+V l=1 = -2*Zval/r beyond r=  1.7813
+V l=2 = -2*Zval/r beyond r=  1.8962
+V l=3 = -2*Zval/r beyond r=  1.8962
+All V_l potentials equal beyond r=  1.8962
+This should be close to max(r_c) in ps generation
+All pots = -2*Zval/r beyond r=  1.8962
+
+VLOCAL1: 99.0% of the norm of Vloc inside     12.073 Ry
+VLOCAL1: 99.9% of the norm of Vloc inside     27.515 Ry
+atom: Maximum radius for 4*pi*r*r*local-pseudopot. charge    2.28723
+atom: Maximum radius for r*vlocal+2*Zval:    1.99338
+GHOST: No ghost state for L =  0
+GHOST: No ghost state for L =  1
+GHOST: No ghost state for L =  2
+GHOST: No ghost state for L =  3
+
+KBgen: Kleinman-Bylander projectors: 
+   l= 0   rc=  2.095595   el= -1.255935   Ekb=  7.558329   kbcos=  0.309403
+   l= 1   rc=  2.148649   el= -0.515427   Ekb=  2.722726   kbcos=  0.294421
+   l= 2   rc=  2.175677   el=  0.002354   Ekb= -2.719027   kbcos= -0.055228
+   l= 3   rc=  2.345140   el=  0.003460   Ekb= -0.697956   kbcos= -0.004287
+
+KBgen: Total number of  Kleinman-Bylander projectors:   16
+atom: -------------------------------------------------------------------------
+
+atom: SANKEY-TYPE ORBITALS:
+atom: Selected multiple-zeta basis: split     
+
+SPLIT: Orbitals with angular momentum L= 0
+
+SPLIT: Basis orbitals for state 4s
+
+   izeta = 1
+                 lambda =    1.000000
+                     rc =    4.273252
+                 energy =   -1.240881
+                kinetic =    0.878740
+    potential(screened) =   -2.119622
+       potential(ionic) =   -7.072673
+
+   izeta = 2
+                 rmatch =    3.412229
+              splitnorm =    0.178285
+                 energy =   -1.052327
+                kinetic =    1.438546
+    potential(screened) =   -2.490872
+       potential(ionic) =   -7.691847
+
+SPLIT: Orbitals with angular momentum L= 1
+
+SPLIT: Basis orbitals for state 4p
+
+   izeta = 1
+                 lambda =    1.000000
+                     rc =    5.351529
+                 energy =   -0.502791
+                kinetic =    1.467377
+    potential(screened) =   -1.970167
+       potential(ionic) =   -6.573875
+
+   izeta = 2
+                 rmatch =    3.771113
+              splitnorm =    0.176001
+                 energy =   -0.322659
+                kinetic =    2.236764
+    potential(screened) =   -2.559422
+       potential(ionic) =   -7.595195
+
+POLgen: Perturbative polarization orbital with L=  2
+
+POLgen: Polarization orbital for state 4p
+
+   izeta = 1
+                     rc =    5.351529
+                 energy =    0.687491
+                kinetic =    2.088919
+    potential(screened) =   -1.401428
+       potential(ionic) =   -5.577481
+atom: Total number of Sankey-type orbitals: 13
+
+atm_pop: Valence configuration (for local Pseudopot. screening):
+                                                                      
+                                                                      
+Vna: chval, zval:    0.00000   4.00000
+You might have an extra low-lying basis orbital
+Total charge in occupied basis states different from valence charge
+Stopping Program from Node:    0

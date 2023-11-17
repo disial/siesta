@@ -1,0 +1,91 @@
+SystemName     Bi2S3) Rhombohedra structure                                                    
+SystemLabel     Bi2S3                                                                           
+SpinPolarized              F     # default value
+NonCollinearSpin              F     # default value
+SpinOrbit              F     # default value
+#:block? SpinPolarized              F
+#:defined? SpinPolarized              F
+#:block? NonCollinearSpin              F
+#:defined? NonCollinearSpin              F
+#:block? SpinOrbit              F
+#:defined? SpinOrbit              F
+Spin     none                                 # default value
+TimeReversalSymmetry              T     # default value
+DebugObjects.Node         0     # default value
+DebugObjects              F     # default value
+XML.Write              F     # default value
+timer_report_threshold          0.000000000         # default value
+UseParallelTimer              T     # default value
+UseTreeTimer              F     # default value
+alloc_report_level         0     # default value
+alloc_report_threshold          0.000000000         # default value
+xc.functional     LDA     # default value
+xc.authors     PZ     # default value
+MM.Cutoff          30.00000000     Bohr     # default value
+MM.UnitsEnergy     eV     # default value
+MM.UnitsDistance     Ang     # default value
+WriteIonPlotFiles              F     # default value
+Atom.Debug.KB.Generation              F     # default value
+KB.New.Reference.Orbitals              F     # default value
+user-basis              F     # default value
+user-basis-netcdf              F     # default value
+#:block? LDAU.proj              F
+#:defined? LDAU.proj              F
+Number_of_species              2
+%block Chemical_species_label
+   1  83  Bi
+   2  16  S
+%endblock Chemical_species_label
+ReparametrizePseudos              F     # default value
+Restricted.Radial.Grid              T     # default value
+Rmax.Radial.Grid          0.000000000         # default value
+PAO.BasisSize     standard            # default value
+PAO.BasisType     split                                                                           
+PAO.SoftDefault              F     # default value
+PAO.SoftInnerRadius         0.9000000000         # default value
+PAO.SoftPotential          40.00000000         # default value
+PAO.SplitNorm         0.2500000000    
+PAO.SplitNormH         -1.000000000         # default value
+%block PAO.Basis
+ Bi                    5                    # Species label, number of l-shells
+  n=5   0   1                         # n, l, Nzeta
+    2.077
+    1.000
+  n=6   0   2                         # n, l, Nzeta
+    4.184      3.258
+    1.000      1.000
+  n=5   1   1                         # n, l, Nzeta
+    2.414
+    1.000
+  n=6   1   2 P   1                   # n, l, Nzeta, Polarization, NzetaPol
+    5.937      4.398
+    1.000      1.000
+  n=5   2   1                         # n, l, Nzeta
+    3.258
+    1.000
+ S                    2                    # Species label, number of l-shells
+  n=4   0   2                         # n, l, Nzeta
+    4.257      3.357
+    1.000      1.000
+  n=4   1   2 P   1                   # n, l, Nzeta, Polarization, NzetaPol
+    5.331      3.710
+    1.000      1.000
+%endblock PAO.Basis
+%block PS.lmax
+    Bi    3
+    S    3
+%endblock PS.lmax
+LDAU.ProjectorGenerationMethod         2     # default value
+LDAU.EnergyShift         0.5000000000E-01 Ry     # default value
+LDAU.CutoffNorm         0.9000000000         # default value
+PAO.SoftDefault              F     # default value
+PAO.SoftInnerRadius         0.9000000000         # default value
+PAO.SoftPotential          40.00000000         # default value
+LDAU.ThresholdTol         0.1000000000E-01     # default value
+LDAU.PopTol         0.1000000000E-02     # default value
+LDAU.PotentialShift              F     # default value
+LDAU.FirstIteration              F     # default value
+FilterCutoff          0.000000000     Ry     # default value
+FilterTol          0.000000000     Ry     # default value
+KB.Rmax          6.000000000     Bohr     # default value
+PAO.EnergyShift         0.2000000000E-01 Ry     # default value
